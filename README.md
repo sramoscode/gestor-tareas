@@ -1,30 +1,52 @@
 # Gestor de tareas en Java
 
-## Descripción
-
-Aplicación de consola desarrollada en Java 21 para gestionar una lista de tareas. Este proyecto forma parte de mi plan de aprendizaje y desarrollo de portfolio.
+Aplicación de consola desarrollada en **Java 21** que permite gestionar tareas mediante un menú interactivo. El proyecto utiliza programación orientada a objetos, colecciones y persistencia de datos en archivos.
 
 ## Funcionalidades
 
-- Añadir tareas con nombre y descripción.
 - Mostrar todas las tareas.
+- Añadir tareas con nombre y descripción.
 - Marcar tareas como completadas.
-- Eliminar tareas por nombre.
-- Informar cuando no hay tareas o no se encuentra la tarea solicitada.
+- Eliminar tareas.
+- Guardar automáticamente los cambios en un archivo local.
+- Recuperar las tareas guardadas al iniciar el programa.
 
-## Tecnologías y conceptos
+## Tecnologías y conceptos utilizados
 
 - Java 21.
 - Programación orientada a objetos (POO).
-- Clases, atributos privados y métodos.
-- `ArrayList` y colecciones.
-- Bucles, condicionales y búsqueda de elementos.
-- Entrada de datos mediante `Scanner`.
+- Clases, objetos, atributos y métodos.
+- Colecciones mediante `ArrayList`.
+- Manejo de excepciones (`try-catch`).
+- Lectura y escritura de archivos.
+- Persistencia de datos mediante archivos de texto.
+
+## Estructura del proyecto
+
+```text
+gestor-de-tareas/
+├── .gitignore
+├── README.md
+└── src/
+    ├── Main.java
+    ├── Tarea.java
+    ├── pruebatrycatch/
+    └── PruebaArchivos.java
+```
 
 ## Ejecución
 
-El proyecto puede ejecutarse desde un entorno de desarrollo compatible con Java 21, como Visual Studio Code con las extensiones de Java correspondientes.
+1. Clonar el repositorio.
+2. Abrir el proyecto en un entorno compatible con Java 21.
+3. Ejecutar la clase `Main`.
+4. Utilizar el menú de consola para gestionar las tareas.
 
-## Objetivo de aprendizaje
+## Persistencia de datos
 
-Practicar la programación orientada a objetos y el uso de colecciones en Java mediante una aplicación de consola.
+Las tareas se almacenan en el archivo `tareas.txt`. Cada tarea guarda su nombre, descripción y estado de finalización.
+
+Al iniciar el programa, se recuperan automáticamente las tareas almacenadas. Los cambios se guardan en el archivo al añadir, completar o eliminar una tarea.
+
+## Objetivo del proyecto
+
+Este proyecto forma parte de mi aprendizaje progresivo de Java. Su objetivo es poner en práctica los fundamentos del lenguaje, la programación orientada a objetos, las colecciones, el manejo de excepciones y la persistencia de datos.

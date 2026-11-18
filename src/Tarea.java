@@ -30,7 +30,7 @@ public class Tarea {
     }
 
     public void comprobarCompletada() {
-        System.out.println(isCompletada() ? "Esta completada" : "No esta completada");
+        System.out.println(isCompletada() ? "Completada: Esta completada" : "Completada: No esta completada");
     }
 
     public void marcarCompletada() {

@@ -1,3 +1,8 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,6 +16,7 @@ public class Main {
                 tarea.consultarNombre();
                 tarea.consultarDescripcion();
                 tarea.comprobarCompletada();
+                System.out.println();
             }
         } else {
             System.out.println("No hay tareas");
@@ -65,7 +71,7 @@ public class Main {
             if (eliminar != -1) {
                 tareas.remove(eliminar);
                 System.out.println("La tarea se borro correctamente");
-            }else {
+            } else {
                 System.out.println("No se pudo borrar la tarea");
             }
         } else {
@@ -73,8 +79,48 @@ public class Main {
         }
     }
 
+    public static void cargarTareas() {
+        try {
+            Path archivo = Path.of("tareas.txt");
+            if (Files.exists(archivo)) {
+                tareas.clear();
+                for (String linea : Files.readAllLines(archivo)) {
+                    if (linea.isBlank()) {
+                        continue;
+                    }
+                    String[] datos = linea.split(";", -1);
+                    if (datos.length != 3) {
+                        System.out.println("Linea no valida en el archivo");
+                        continue;
+                    }
+                    Tarea tarea = new Tarea(datos[0], datos[1]);
+                    if (Boolean.parseBoolean(datos[2])) {
+                        tarea.marcarCompletada();
+                    }
+                    tareas.add(tarea);
+                }
+            }
+
+        } catch (IOException e) {
+            System.out.println("Error al cargar las tareas");
+        }
+    }
+
+    public static void guardarTareas() {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("tareas.txt"))) {
+            for (Tarea tarea : tareas) {
+                bw.write(tarea.getNombre() + ";" + tarea.getDescripcion() + ";" + tarea.isCompletada());
+                bw.newLine();
+            }
+            System.out.println("Archivo guardado correctamente");
+        } catch (IOException e) {
+            System.out.println("Error al escribir en el archivo");
+        }
+    }
+
     public static void main(String[] args) {
         int salir = 0;
+        cargarTareas();
         do {
             System.out.println("");
             System.out.println("GESTOR DE TAREAS");
@@ -93,12 +139,15 @@ public class Main {
                 case 2:
                     agregarTarea();
                     System.out.println("Tarea hecha");
+                    guardarTareas();
                     break;
                 case 3:
                     marcarTareaCompletada();
+                    guardarTareas();
                     break;
                 case 4:
                     eliminarTarea();
+                    guardarTareas();
                     break;
                 case 5:
                     System.out.println("Saliendo");

@@ -1,3 +1,14 @@
+# Ejercicios de prueba
+/src/PruebaArchivos.java
+/src/pruebatrycatch.java
+/src/prueba.txt
+
+# Archivos compilados de Java
 *.class
+
+# Carpetas de compilación
+/bin/
+/out/
+
+# Configuración local de Visual Studio Code
 .vscode/
-bin/
